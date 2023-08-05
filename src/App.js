@@ -1,9 +1,14 @@
 import React from 'react';
 import { RouterProvider } from 'react-router-dom';
+import './App.css';
 import router from './Routes/Routes';
 
 const App = () => {
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <div className="max-w-[1440px] mx-auto">
+      <RouterProvider router={router}></RouterProvider>
+    </div>
+  );
 };
 
 export default App;
