@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
-  const { id, title, price, category, image } = product;
+  const { id, title, price, category, image, description } = product;
   return (
     <div className="card card-compact bg-base-100 shadow-xl h-96">
       <figure>
@@ -11,7 +11,7 @@ const Product = ({ product }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title"> {title}</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <p className="truncate ..."> {description}</p>
         <div className="card-actions justify-between items-center">
           <Link to={`/product/${id}`}>
             <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">

@@ -1,10 +1,34 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const ProductDetails = () => {
-  const productDetails = useLoaderData();
-  const { category, description, image, price, title, rating } = productDetails;
-  console.log(productDetails);
+  const product = useLoaderData();
+  const navigate = useNavigate();
+  const { category, description, image, price, title, rating } = product;
+  console.log(product);
+
+  const handleCart = (product, redirect) => {
+    const carts = JSON.parse(localStorage.getItem('cart')) || [];
+    const isProductExist = carts.find((item) => item.id === product.id);
+    if (isProductExist) {
+      const updateProduct = carts.map((item) => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            quantity: item.quantity + 1
+          };
+        }
+      });
+      localStorage.setItem('carts', JSON.stringify(updateProduct));
+    } else {
+      localStorage.setItem('carts', JSON.stringify([...carts, { ...product, quantity: 1 }]));
+    }
+    if (redirect) {
+      navigate('/carts');
+    }
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-lg my-10">
       <section className="text-gray-600 body-font overflow-hidden">
@@ -63,10 +87,14 @@ const ProductDetails = () => {
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">${price}</span>
-                <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                <button
+                  onClick={() => handleCart(product, true)}
+                  className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
                   Buy Now
                 </button>
-                <button className="flex ml-3 text-white bg-slate-500 border-0 py-2 px-6 focus:outline-none hover:bg-slate-600 rounded">
+                <button
+                  onClick={() => handleCart(product)}
+                  className="flex ml-3 text-white bg-slate-500 border-0 py-2 px-6 focus:outline-none hover:bg-slate-600 rounded">
                   Add to Cart
                 </button>
               </div>
