@@ -9,16 +9,17 @@ const ProductDetails = () => {
   console.log(product);
 
   const handleCart = (product, redirect) => {
-    const carts = JSON.parse(localStorage.getItem('cart')) || [];
-    const isProductExist = carts.find((item) => item.id === product.id);
+    const carts = JSON.parse(localStorage.getItem('carts')) || [];
+    const isProductExist = carts.find((item) => item?.id === product?.id);
     if (isProductExist) {
       const updateProduct = carts.map((item) => {
-        if (item.id === product.id) {
+        if (item.id === product?.id) {
           return {
             ...item,
             quantity: item.quantity + 1
           };
         }
+        return item;
       });
       localStorage.setItem('carts', JSON.stringify(updateProduct));
     } else {

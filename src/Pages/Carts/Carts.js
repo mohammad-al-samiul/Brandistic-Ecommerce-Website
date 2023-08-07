@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Carts = () => {
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
+
   const carts = JSON.parse(localStorage.getItem('carts')) || [];
 
   if (!carts.length) {
@@ -15,41 +16,43 @@ const Carts = () => {
 
   useEffect(() => {
     const total = carts.reduce((acc, item) => {
-      return acc + item.price * item.quantity;
+      return acc + item?.price * item?.quantity;
     }, 0);
     setTotal(total);
   }, [carts]);
 
   const handleIncrement = (id) => {
     const updateProduct = carts.map((item) => {
-      if (item.id === id) {
+      if (item?.id === id) {
         return {
           ...item,
-          quantity: item.quantity + 1
+          quantity: item?.quantity + 1
         };
       }
+      return item;
     });
-    localStorage.setItem('carts', JSON.stringify(updateProduct));
     navigate('/carts');
+    localStorage.setItem('carts', JSON.stringify(updateProduct));
   };
 
   const handleDecrement = (id) => {
     const updateProduct = carts.map((item) => {
-      if (item.id === id) {
+      if (item?.id === id) {
         return {
           ...item,
-          quantity: item.quantity - 1
+          quantity: item?.quantity - 1
         };
       }
+      return item;
     });
-    localStorage.setItem('carts', JSON.stringify(updateProduct));
     navigate('/carts');
+    localStorage.setItem('carts', JSON.stringify(updateProduct));
   };
 
   const handleRemove = (id) => {
-    const products = carts.filter((item) => item.id !== id);
-    localStorage.setItem('carts', JSON.stringify(products));
+    const products = carts.filter((item) => item?.id !== id);
     navigate('/carts');
+    localStorage.setItem('carts', JSON.stringify(products));
   };
 
   return (
@@ -135,7 +138,7 @@ const Carts = () => {
               <h1 className="font-semibold text-2xl border-b pb-8">Order Summary</h1>
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">Items {carts?.length}</span>
-                <span className="font-semibold text-sm">{total}$</span>
+                <span className="font-semibold text-sm">{total.toFixed(2)}$</span>
               </div>
               <div>
                 <label className="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>

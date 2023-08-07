@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../Assets/ecommerce.png';
 const Navbar = () => {
-  const carts = JSON.parse(localStorage.getItem('carts')) || [];
+  const [carts, setCarts] = useState([]);
+
+  useEffect(() => {
+    const carts = JSON.parse(localStorage.getItem('carts')) || [];
+    setCarts(carts);
+  }, [carts]);
   return (
     <div className="navbar bg-base-100 shadow-lg rounded-lg">
       <div className="navbar-start">
