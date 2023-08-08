@@ -5,9 +5,10 @@ const Navbar = () => {
   const [carts, setCarts] = useState([]);
 
   useEffect(() => {
-    const carts = JSON.parse(localStorage.getItem('carts')) || [];
-    setCarts(carts);
+    const allCarts = JSON.parse(localStorage.getItem('carts')) || [];
+    setCarts(allCarts);
   }, [carts]);
+
   return (
     <div className="navbar bg-base-100 shadow-lg rounded-lg">
       <div className="navbar-start">

@@ -8,7 +8,7 @@ const CategoryProducts = () => {
     fetch(`https://fakestoreapi.com/products/categories`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setProductCategories(data);
       });
   }, []);

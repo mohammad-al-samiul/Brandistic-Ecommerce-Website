@@ -9,7 +9,7 @@ const Products = () => {
     fetch(`https://fakestoreapi.com/products?limit=15`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setProducts(data);
       });
   }, []);

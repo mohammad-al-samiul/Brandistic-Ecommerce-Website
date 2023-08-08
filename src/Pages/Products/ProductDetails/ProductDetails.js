@@ -6,7 +6,7 @@ const ProductDetails = () => {
   const product = useLoaderData();
   const navigate = useNavigate();
   const { category, description, image, price, title, rating } = product;
-  console.log(product);
+  //console.log(product);
 
   const handleCart = (product, redirect) => {
     const carts = JSON.parse(localStorage.getItem('carts')) || [];

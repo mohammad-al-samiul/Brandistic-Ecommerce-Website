@@ -7,11 +7,14 @@ const Carts = () => {
   const navigate = useNavigate();
 
   const carts = JSON.parse(localStorage.getItem('carts')) || [];
+  console.log(carts);
 
   if (!carts.length) {
-    <div className="font-bold text-center text-xl my-10">
-      You didn't select product for purchasing
-    </div>;
+    return (
+      <div className="font-bold text-center text-xl my-10">
+        You didn't select any product for purchasing
+      </div>
+    );
   }
 
   useEffect(() => {
@@ -31,8 +34,9 @@ const Carts = () => {
       }
       return item;
     });
-    navigate('/carts');
+
     localStorage.setItem('carts', JSON.stringify(updateProduct));
+    navigate('/carts');
   };
 
   const handleDecrement = (id) => {
@@ -45,14 +49,16 @@ const Carts = () => {
       }
       return item;
     });
-    navigate('/carts');
+
     localStorage.setItem('carts', JSON.stringify(updateProduct));
+    navigate('/carts');
   };
 
   const handleRemove = (id) => {
     const products = carts.filter((item) => item?.id !== id);
-    navigate('/carts');
+
     localStorage.setItem('carts', JSON.stringify(products));
+    navigate('/carts');
   };
 
   return (
