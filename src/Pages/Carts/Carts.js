@@ -92,7 +92,7 @@ const Carts = () => {
                         <span className="text-red-500 text-xs capitalize">{cart?.category} </span>
                         <p
                           onClick={() => handleRemove(cart?.id)}
-                          className="font-semibold hover:text-red-500 text-gray-500 text-xs">
+                          className="cursor-pointer font-semibold hover:text-red-500 text-gray-500 text-xs">
                           Remove
                         </p>
                       </div>
