@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const FilterProduct = ({ filterProduct }) => {
-  console.log(filterProduct);
+  //console.log(filterProduct);
   const { category, title, price, image, id } = filterProduct;
   return (
     <div className="card card-compact bg-base-100 shadow-xl h-96">

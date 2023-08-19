@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../Assets/ecommerce.png';
-const Navbar = () => {
-  const [carts, setCarts] = useState([]);
+import { CartContext } from '../../../Context/ContextCart';
 
-  useEffect(() => {
-    const allCarts = JSON.parse(localStorage.getItem('carts')) || [];
-    setCarts(allCarts);
-  }, [carts]);
+const Navbar = () => {
+  const { carts } = useContext(CartContext);
+
+  console.log(carts.length);
 
   return (
     <div className="navbar bg-base-100 shadow-lg rounded-lg">
@@ -66,7 +67,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end items-center">
         <Link to={'/carts'}>
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -87,6 +88,11 @@ const Navbar = () => {
             </div>
           </label>
         </Link>
+        {/* <Link to={'/carts'}>
+          <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+            Go to Cart
+          </button>
+        </Link> */}
       </div>
     </div>
   );

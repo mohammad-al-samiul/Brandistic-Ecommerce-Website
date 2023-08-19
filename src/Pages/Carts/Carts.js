@@ -7,15 +7,6 @@ const Carts = () => {
   const navigate = useNavigate();
 
   const carts = JSON.parse(localStorage.getItem('carts')) || [];
-  console.log(carts);
-
-  if (!carts.length) {
-    return (
-      <div className="font-bold text-center text-xl my-10">
-        You didn't select any product for purchasing
-      </div>
-    );
-  }
 
   useEffect(() => {
     const total = carts.reduce((acc, item) => {
@@ -58,11 +49,19 @@ const Carts = () => {
     const products = carts.filter((item) => item?.id !== id);
 
     localStorage.setItem('carts', JSON.stringify(products));
+
     navigate('/carts');
   };
 
   return (
     <div>
+      {!carts?.length && (
+        <>
+          <div className="font-bold text-center text-xl my-10">
+            You didn't select any product for purchasing
+          </div>
+        </>
+      )}
       <div className="bg-gray-100">
         <div className="container mx-auto mt-10">
           <div className="flex shadow-md my-10">
@@ -85,7 +84,7 @@ const Carts = () => {
                   Total
                 </h3>
               </div>
-              {/* <Cart /> */}
+
               {carts?.map((cart, i) => {
                 return (
                   <div key={i} className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
@@ -114,6 +113,7 @@ const Carts = () => {
                       <input
                         className="mx-2 border text-center w-8"
                         type="text"
+                        readOnly
                         value={cart?.quantity}
                       />
 
