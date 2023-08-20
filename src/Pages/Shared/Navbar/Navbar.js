@@ -8,7 +8,7 @@ import { CartContext } from '../../../Context/ContextCart';
 const Navbar = () => {
   const { carts } = useContext(CartContext);
 
-  console.log(carts.length);
+  // console.log(carts?.length);
 
   return (
     <div className="navbar bg-base-100 shadow-lg rounded-lg">

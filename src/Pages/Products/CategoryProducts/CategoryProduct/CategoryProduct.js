@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const CategoryProduct = ({ category }) => {
   return (
-    <div>
+    <>
       <Link to={`/product/category/${category}`}>
-        <section className="text-gray-600 body-font">
+        <div className="text-gray-600 body-font">
           <div className="container ">
             <div className="flex flex-wrap ">
               <div>
@@ -69,9 +69,9 @@ const CategoryProduct = ({ category }) => {
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </Link>
-    </div>
+    </>
   );
 };
 

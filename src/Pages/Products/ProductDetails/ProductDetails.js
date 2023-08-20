@@ -1,16 +1,19 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import { CartContext } from '../../../Context/ContextCart';
 
 const ProductDetails = () => {
+  const [cartItem, setCartItem] = useState([]);
   const product = useLoaderData();
   const navigate = useNavigate();
+  const { setCarts } = useContext(CartContext);
   const { category, description, image, price, title, rating } = product;
-  //console.log(product);
 
   const handleCart = (product, redirect) => {
     const carts = JSON.parse(localStorage.getItem('carts')) || [];
+    // setCarts(carts);
 
     const isProductExist = carts.find((item) => item?.id === product?.id);
     if (isProductExist) {
@@ -23,11 +26,18 @@ const ProductDetails = () => {
         }
         return item;
       });
+
       localStorage.setItem('carts', JSON.stringify(updateProduct));
     } else {
+      //console.log('new product added');
       localStorage.setItem('carts', JSON.stringify([...carts, { ...product, quantity: 1 }]));
+      const cart = JSON.parse(localStorage.getItem('carts')) || [];
+
+      setCarts(cart);
     }
     if (redirect) {
+      const carts = JSON.parse(localStorage.getItem('carts')) || [];
+      setCarts(carts);
       navigate('/carts');
     }
   };

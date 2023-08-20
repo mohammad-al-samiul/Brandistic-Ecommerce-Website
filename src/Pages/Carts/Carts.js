@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { CartContext } from '../../Context/ContextCart';
 
 const Carts = () => {
+  const { setCarts } = useContext(CartContext);
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
 
   const carts = JSON.parse(localStorage.getItem('carts')) || [];
+  //console.log(carts);
 
   useEffect(() => {
     const total = carts.reduce((acc, item) => {
@@ -50,6 +54,7 @@ const Carts = () => {
 
     localStorage.setItem('carts', JSON.stringify(products));
 
+    setCarts(products);
     navigate('/carts');
   };
 
@@ -64,8 +69,8 @@ const Carts = () => {
       )}
       <div className="bg-gray-100">
         <div className="container mx-auto mt-10">
-          <div className="flex shadow-md my-10">
-            <div className="w-3/4 bg-white px-10 py-10">
+          <div className="lg:flex shadow-md my-10">
+            <div className="lg:w-3/4 bg-white px-10 py-10">
               <div className="flex justify-between border-b pb-8">
                 <h1 className="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl">{carts?.length} Items</h2>
@@ -140,7 +145,7 @@ const Carts = () => {
               </Link>
             </div>
 
-            <div id="summary" className="w-1/4 px-8 py-10">
+            <div id="summary" className="lg:w-1/4 px-8 py-10">
               <h1 className="font-semibold text-2xl border-b pb-8">Order Summary</h1>
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">Items {carts?.length}</span>
