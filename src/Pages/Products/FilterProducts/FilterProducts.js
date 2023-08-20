@@ -10,7 +10,7 @@ const FilterProducts = () => {
     fetch(`https://fakestoreapi.com/products/category/${name}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setFilterProducts(data);
       });
   }, [name]);

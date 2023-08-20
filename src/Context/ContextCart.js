@@ -19,7 +19,11 @@ const ContextCart = ({ children }) => {
 
   const cartItem = { carts, setCarts };
 
-  return <CartContext.Provider value={cartItem}>{children}</CartContext.Provider>;
+  return (
+    <div>
+      <CartContext.Provider value={cartItem}>{children}</CartContext.Provider>
+    </div>
+  );
 };
 
 export default ContextCart;

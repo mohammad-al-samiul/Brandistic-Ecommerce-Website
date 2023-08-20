@@ -55,6 +55,7 @@ const Carts = () => {
     localStorage.setItem('carts', JSON.stringify(products));
 
     setCarts(products);
+
     navigate('/carts');
   };
 

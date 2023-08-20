@@ -13,7 +13,6 @@ const ProductDetails = () => {
 
   const handleCart = (product, redirect) => {
     const carts = JSON.parse(localStorage.getItem('carts')) || [];
-    // setCarts(carts);
 
     const isProductExist = carts.find((item) => item?.id === product?.id);
     if (isProductExist) {
@@ -38,6 +37,7 @@ const ProductDetails = () => {
     if (redirect) {
       const carts = JSON.parse(localStorage.getItem('carts')) || [];
       setCarts(carts);
+
       navigate('/carts');
     }
   };
