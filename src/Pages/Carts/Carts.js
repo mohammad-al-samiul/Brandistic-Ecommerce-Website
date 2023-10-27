@@ -94,8 +94,8 @@ const Carts = () => {
               {carts?.map((cart, i) => {
                 return (
                   <div key={i} className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-                    <div className="flex w-2/5">
-                      <div className="w-20">
+                    <div className="flex w-2/5 items-center">
+                      <div className="w-44">
                         <img className="h-24" src={cart?.image} alt={cart?.title} />
                       </div>
                       <div className="flex flex-col justify-between ml-4 flex-grow">
