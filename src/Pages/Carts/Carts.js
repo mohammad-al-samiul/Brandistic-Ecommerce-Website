@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../Context/ContextCart';
 
@@ -10,7 +11,12 @@ const Carts = () => {
   const navigate = useNavigate();
 
   const carts = JSON.parse(localStorage.getItem('carts')) || [];
-  //console.log(carts);
+
+  const handleProduct = () => {
+    localStorage.removeItem('carts');
+    toast.success('Successfully Purchase the Products');
+    setCarts('');
+  };
 
   useEffect(() => {
     const total = carts.reduce((acc, item) => {
@@ -64,7 +70,7 @@ const Carts = () => {
       {!carts?.length && (
         <>
           <div className="font-bold text-center text-xl my-10">
-            You didn't select any product for purchasing
+            Please select any product for purchasing
           </div>
         </>
       )}
@@ -179,7 +185,9 @@ const Carts = () => {
                   <span>Total cost</span>
                   <span>${(total + 10).toFixed(2)}</span>
                 </div>
-                <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+                <button
+                  onClick={handleProduct}
+                  className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
                   Checkout
                 </button>
               </div>
