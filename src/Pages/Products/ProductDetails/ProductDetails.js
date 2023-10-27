@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../../Context/ContextCart';
 
 const ProductDetails = () => {
-  const [cartItem, setCartItem] = useState([]);
   const product = useLoaderData();
   const navigate = useNavigate();
   const { setCarts } = useContext(CartContext);
@@ -30,8 +29,8 @@ const ProductDetails = () => {
     } else {
       //console.log('new product added');
       localStorage.setItem('carts', JSON.stringify([...carts, { ...product, quantity: 1 }]));
-      const cart = JSON.parse(localStorage.getItem('carts')) || [];
 
+      const cart = JSON.parse(localStorage.getItem('carts')) || [];
       setCarts(cart);
     }
     if (redirect) {
@@ -45,7 +44,7 @@ const ProductDetails = () => {
   return (
     <div>
       <div className="bg-white shadow-lg rounded-lg my-10">
-        <section className="text-gray-600 body-font overflow-hidden">
+        <div className="text-gray-600 body-font overflow-hidden">
           <div className="container px-5 py-24 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
               <img
@@ -115,7 +114,7 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </div>
   );

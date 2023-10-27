@@ -21,7 +21,7 @@ const CategoryProduct = ({ category }) => {
                   Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
                   tousled waistcoat.
                 </p>
-                <a className="text-indigo-500 inline-flex items-center">
+                <Link className="text-indigo-500 inline-flex items-center">
                   Learn More
                   <svg
                     className="w-4 h-4 ml-2"
@@ -34,7 +34,7 @@ const CategoryProduct = ({ category }) => {
                     <path d="M5 12h14"></path>
                     <path d="M12 5l7 7-7 7"></path>
                   </svg>
-                </a>
+                </Link>
                 <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
                   <span className="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                     <svg

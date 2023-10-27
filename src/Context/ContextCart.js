@@ -1,21 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
 const ContextCart = ({ children }) => {
   const [carts, setCarts] = useState([]);
-  // console.log(carts.length);
-
-  useEffect(() => {
-    let cartItems = JSON.parse(localStorage.getItem('carts') || []);
-    setCarts(cartItems);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('carts', JSON.stringify(carts));
-  }, [carts]);
 
   const cartItem = { carts, setCarts };
 
