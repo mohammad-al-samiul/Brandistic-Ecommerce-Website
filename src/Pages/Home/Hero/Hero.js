@@ -8,10 +8,10 @@ const Hero = () => {
   };
   return (
     <div>
-      <div className="hero w-full h-max bg-top bg-cover bg-no-repeat" style={heroStyle}>
+      <div className="hero w-full bg-top bg-cover bg-no-repeat" style={heroStyle}>
         <div className="hero-content flex-col-reverse  lg:flex-row-reverse p-0">
           <div className="lg:w-1/2 flex justify-center lg:justify-end">
-            <img src={image1} className="w-1/2     rounded-lg " />
+            <img src={image1} className="lg:max-h-screen w-1/2 lg:w-fit" />
           </div>
           <div className="lg:w-1/2 p-5">
             <h3 className="text-blue-600">Top Sale on This Week</h3>
